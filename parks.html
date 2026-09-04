@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parks | City of Pinehaven Parks & Recreation</title>
+  <meta name="description" content="City parks in Pinehaven, Alabama. Filter by playground, trail, or boat ramp.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="official-banner">
+    <p class="wrap">An official website of the City of Pinehaven, Alabama</p>
+  </div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <rect width="48" height="48" rx="4" fill="#0f261e"/>
+          <rect x="4" y="4" width="40" height="40" rx="2" fill="none" stroke="#c4a35a" stroke-width="1.5"/>
+          <path fill="#c4a35a" d="M24 8l8 12h-5l7 10h-7v8h-6v-8h-7l7-10h-5z"/>
+        </svg>
+        <span>
+          <span class="brand-kicker">City of Pinehaven</span>
+          <span class="brand-name">Parks & Recreation</span>
+        </span>
+      </a>
+      <p class="header-phone"><a href="tel:+12515550160">(251) 555-0160</a></p>
+      <button type="button" class="menu-button" aria-controls="site-nav" aria-expanded="false">
+        <span class="menu-button-bars" aria-hidden="true"></span>
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="parks.html" aria-current="page">Parks</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="hours.html">Hours & fees</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="site-main">
+    <div class="wrap">
+      <header class="page-intro">
+        <p class="kicker">Directory</p>
+        <h1>Parks</h1>
+        <p class="lede">City parks are open dawn to dusk unless a sign at the gate says otherwise. Tick a tag to show only parks with that amenity. If no tag is selected, every park is listed.</p>
+      </header>
+
+      <form id="park-filters" class="filters" action="#" method="get">
+        <fieldset>
+          <legend>Filter by tag</legend>
+          <div class="filter-options">
+            <label>
+              <input type="checkbox" name="tag" value="playground">
+              Playground
+            </label>
+            <label>
+              <input type="checkbox" name="tag" value="trail">
+              Trail
+            </label>
+            <label>
+              <input type="checkbox" name="tag" value="boat-ramp">
+              Boat ramp
+            </label>
+          </div>
+        </fieldset>
+        <div class="filters-actions">
+          <button type="button" class="button button-secondary" id="clear-filters">Show all</button>
+          <p class="parks-status" id="parks-status" aria-live="polite">Showing 8 of 8 parks.</p>
+        </div>
+      </form>
+
+      <p class="parks-empty" id="parks-empty" hidden>No parks match those tags. Clear the filters to see the full list.</p>
+
+      <div class="card-grid" id="park-list">
+        <article class="park-card" data-tags="playground trail">
+          <h2>Riverview Park</h2>
+          <p>A riverfront lawn with a shaded playground and a paved loop along the water.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Playground</span></li>
+            <li><span class="tag">Trail</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="boat-ramp">
+          <h2>Cedar Point Landing</h2>
+          <p>A public boat ramp and courtesy dock on the bay, with trailer parking and a fish-cleaning table.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Boat ramp</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="trail">
+          <h2>Mill Creek Greenway</h2>
+          <p>A two-mile crushed-shell trail that follows Mill Creek from Civic Plaza to the old mill site.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Trail</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="playground">
+          <h2>Oakshade Neighborhood Park</h2>
+          <p>A neighborhood square with swings, a climbing structure, and benches under live oaks.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Playground</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="boat-ramp playground">
+          <h2>Harbor Bend Park</h2>
+          <p>A small harbor park with a boat ramp, picnic tables, and a fenced play area for younger children.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Boat ramp</span></li>
+            <li><span class="tag">Playground</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="trail">
+          <h2>Whispering Pines Preserve</h2>
+          <p>A pine-flatwoods preserve with a marked walking trail and seasonal wildflower overlooks.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Trail</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="playground trail">
+          <h2>Bayfront Commons</h2>
+          <p>The downtown green on the bay, with a playground, a half-mile promenade, and a Saturday market lawn.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Playground</span></li>
+            <li><span class="tag">Trail</span></li>
+          </ul>
+        </article>
+
+        <article class="park-card" data-tags="boat-ramp trail">
+          <h2>Cypress Inlet Access</h2>
+          <p>A quiet inlet ramp with a short boardwalk trail through cypress and palmetto.</p>
+          <ul class="tag-list">
+            <li><span class="tag">Boat ramp</span></li>
+            <li><span class="tag">Trail</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h2>City of Pinehaven Parks & Recreation</h2>
+        <address>
+          100 Civic Plaza<br>
+          Pinehaven, AL 36500
+        </address>
+        <p><a href="tel:+12515550160">(251) 555-0160</a><br>
+          <a href="mailto:parks@pinehaven.example">parks@pinehaven.example</a></p>
+      </div>
+      <div>
+        <h2>Office hours</h2>
+        <p>Monday–Friday<br>8:00 a.m. to 5:00 p.m.</p>
+        <p>Closed city holidays</p>
+      </div>
+      <div>
+        <h2>On this site</h2>
+        <p><a href="parks.html">Parks</a><br>
+          <a href="programs.html">Programs</a><br>
+          <a href="hours.html">Hours & fees</a><br>
+          <a href="contact.html">Contact</a></p>
+      </div>
+    </div>
+    <p class="wrap copyright">&copy; <span id="year">2026</span> City of Pinehaven. Fictional city site for a portfolio project.</p>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

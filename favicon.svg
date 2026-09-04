@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="City of Pinehaven">
+  <rect width="48" height="48" rx="4" fill="#16382c"/>
+  <rect x="4" y="4" width="40" height="40" rx="2" fill="none" stroke="#c4a35a" stroke-width="1.5"/>
+  <path fill="#c4a35a" d="M24 8l8 12h-5l7 10h-7v8h-6v-8h-7l7-10h-5z"/>
+</svg>
