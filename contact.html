@@ -29,7 +29,7 @@
           <span class="brand-name">Parks & Recreation</span>
         </span>
       </a>
-      <p class="header-phone"><a href="tel:+12515550160">(251) 555-0160</a></p>
+      <p class="header-phone"><a href="tel:+12513458080">1 (251) 345-8080</a></p>
       <button type="button" class="menu-button" aria-controls="site-nav" aria-expanded="false">
         <span class="menu-button-bars" aria-hidden="true"></span>
         Menu
@@ -51,16 +51,20 @@
       <header class="page-intro">
         <p class="kicker">Get in touch</p>
         <h1>Contact</h1>
-        <p class="lede">Name and email are required. This is a practice site, so the form is not emailed to staff. After a valid submit, you will see a thank-you note instead of the form.</p>
+        <p class="lede">Name and email are required. On the live Netlify site, a valid send is stored in Netlify Forms. If it is urgent, call 1 (251) 345-8080.</p>
       </header>
 
       <div id="form-thanks" class="form-thanks" hidden>
         <h2>Thank you</h2>
-        <p>Your message was checked in the browser and was not sent to a server. On a live city site, Parks staff would reply by email.</p>
+        <p>Your message was sent. Parks staff will write back during Monday–Friday hours, 8:00 a.m. to 5:00 p.m. If it is urgent, call <a href="tel:+12513458080">1 (251) 345-8080</a>.</p>
         <p><a href="index.html">Return to the home page</a></p>
       </div>
 
-      <form id="contact-form" class="form" action="#" method="post" novalidate>
+      <form id="contact-form" class="form" name="contact" action="/contact.html" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <p class="visually-hidden">
+          <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
         <p id="form-error" class="form-error" hidden role="alert"></p>
 
         <div class="form-row">
@@ -100,8 +104,8 @@
           100 Civic Plaza<br>
           Pinehaven, AL 36500
         </address>
-        <p>Phone: <a href="tel:+12515550160">(251) 555-0160</a><br>
-          Email: <a href="mailto:parks@pinehaven.example">parks@pinehaven.example</a></p>
+        <p>Phone: <a href="tel:+12513458080">1 (251) 345-8080</a><br>
+          Email: <a href="mailto:parks@pinehaven.com">parks@pinehaven.com</a></p>
         <p>Walk-in hours: Monday–Friday, 8:00 a.m. to 5:00 p.m.</p>
       </aside>
     </div>
@@ -115,8 +119,8 @@
           100 Civic Plaza<br>
           Pinehaven, AL 36500
         </address>
-        <p><a href="tel:+12515550160">(251) 555-0160</a><br>
-          <a href="mailto:parks@pinehaven.example">parks@pinehaven.example</a></p>
+        <p><a href="tel:+12513458080">1 (251) 345-8080</a><br>
+          <a href="mailto:parks@pinehaven.com">parks@pinehaven.com</a></p>
       </div>
       <div>
         <h2>Office hours</h2>

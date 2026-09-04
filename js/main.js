@@ -1,6 +1,6 @@
 // This is the only JavaScript file on the site.
 // It does four jobs: put the year in the footer, open/close the Menu,
-// filter park cards with a loop, and check the contact form.
+// filter park cards with a loop, and check the contact form then send it to Netlify.
 // Every line is commented so you can follow what it does.
 //
 // Words you will see a lot:
@@ -292,7 +292,7 @@ function isValidEmail(value) {
   if (dotIndex === value.length - 1) {
     return false;
   }
-  // If we got this far, it is good enough for this practice form.
+  // If we got this far, it is good enough for this form.
   return true;
 }
 
@@ -332,30 +332,25 @@ function getContactError() {
   return "";
 }
 
-// Run when the user tries to send the contact form.
-// event is the submit event from the browser.
+// Turn every field on a form into a string Netlify can store.
+// form is the <form> element.
+// Returns a URL-encoded string, like "name=Ada&email=ada%40pinehaven.com".
+function encodeFormBody(form) {
+  // FormData copies every named field, including the hidden form-name field.
+  var formData = new FormData(form);
+  // URLSearchParams turns that list into one string Netlify expects.
+  return new URLSearchParams(formData).toString();
+}
+
+// Hide the form and show the thank-you message.
 // Returns nothing.
-function handleContactSubmit(event) {
-  // Stop the browser from trying to send the form to a server. This is a static site.
-  event.preventDefault();
-  // Ask getContactError. It returns a message or an empty string.
-  var errorText = getContactError();
-  // Find the error box.
+function showContactThanks() {
+  // Find the error box so we can hide it if it was showing.
   var errorBox = document.getElementById("form-error");
   // Find the form itself.
   var contactForm = document.getElementById("contact-form");
   // Find the thank-you message.
   var thanksBox = document.getElementById("form-thanks");
-  // If there is an error, show it and stop. Do not hide the form.
-  if (errorText !== "") {
-    // If the error box exists, put the message in it and unhide it.
-    if (errorBox) {
-      errorBox.textContent = errorText;
-      errorBox.hidden = false;
-    }
-    // Leave the function now so we never reach the success steps.
-    return;
-  }
   // Hide the error box in case it was showing from an earlier try.
   if (errorBox) {
     errorBox.hidden = true;
@@ -368,6 +363,61 @@ function handleContactSubmit(event) {
   if (thanksBox) {
     thanksBox.hidden = false;
   }
+}
+
+// POST the form to Netlify Forms on the live site.
+// form is the <form> element.
+// Returns nothing. fetch is asynchronous, so this function does not wait for the reply.
+function sendFormToNetlify(form) {
+  // Ask encodeFormBody for the field string. That function returns the encoded body.
+  var encoded = encodeFormBody(form);
+  // Read the action on the form. That is the contact page on the Netlify site.
+  var sendTo = form.getAttribute("action");
+  // If the action is missing, send to this page.
+  if (!sendTo) {
+    sendTo = "/contact.html";
+  }
+  // Send the form to Netlify. The live site receives this. The in-browser preview does not.
+  fetch(sendTo, {
+    // Use POST so Netlify treats this as a form submission.
+    method: "POST",
+    // Tell Netlify the body is a normal HTML form.
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    // Put the field string in the request body.
+    body: encoded
+  }).catch(function () {
+    // The in-browser preview is not Netlify, so this send can fail. That is fine.
+  });
+}
+
+// Run when the user tries to send the contact form.
+// event is the submit event from the browser.
+// Returns nothing.
+function handleContactSubmit(event) {
+  // Stop the browser from doing a full page reload. We send with fetch instead.
+  event.preventDefault();
+  // Ask getContactError. It returns a message or an empty string.
+  var errorText = getContactError();
+  // Find the error box.
+  var errorBox = document.getElementById("form-error");
+  // Find the form itself.
+  var contactForm = document.getElementById("contact-form");
+  // If there is an error, show it and stop. Do not hide the form. Do not send.
+  if (errorText !== "") {
+    // If the error box exists, put the message in it and unhide it.
+    if (errorBox) {
+      errorBox.textContent = errorText;
+      errorBox.hidden = false;
+    }
+    // Leave the function now so we never reach the success steps.
+    return;
+  }
+  // If the form is on the page, post it to Netlify Forms.
+  if (contactForm) {
+    sendFormToNetlify(contactForm);
+  }
+  // Hide the form and show thanks after a valid check.
+  showContactThanks();
 }
 
 // Attach the submit handler if this page has the contact form.
